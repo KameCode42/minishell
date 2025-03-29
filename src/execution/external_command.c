@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 08:49:58 by david             #+#    #+#             */
-/*   Updated: 2025/03/28 15:04:27 by david            ###   ########.fr       */
+/*   Updated: 2025/03/29 19:54:47 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,7 @@
 // si la commande n'existe pas, return une erreur
 // sinon attend la fin du processus
 //
-//=============================================================================
-// execute_external_command :
-//
-// permet d'executer une commande simple commme ls ou ls -l
-// recupere le chemin de PATH
-// on passe par process pour executer ou non la commande
-//
-// =============================================================================
-
-void	print_cmd_not_found(t_command *cmd)
-{
-	ft_putstr_fd("minishell: ", 2);
-	ft_putstr_fd(cmd->args[0], 2);
-	ft_putstr_fd(": ", 2);
-	ft_putstr_fd("command not found\n", 2);
-}
+//==============================================================================
 
 char	**find_path(t_shell *shell)
 {
@@ -62,16 +47,24 @@ char	**find_path(t_shell *shell)
 	return (f_path);
 }
 
-int	access_command(t_shell *shell, t_command *cmd, char **path)
+int	exec_relative_path(t_command *cmd, char **tab_env)
+{
+	if (access(cmd->args[0], F_OK | X_OK) == 0)
+	{
+		execve(cmd->args[0], cmd->args, tab_env);
+		fre_env_array(tab_env);
+		return (1);
+	}
+	free_env_array(tab_env);
+	return (1);
+}
+
+int	exec_path_env(t_command *cmd, char **path, char **tab_env)
 {
 	int		i;
 	char	*cmd_path;
 	char	*tmp;
-	char	**tab_env;
 
-	tab_env = convert_env_list(shell);
-	if (tab_env == NULL)
-		return (1);
 	i = -1;
 	while (path[++i] != NULL)
 	{
@@ -89,6 +82,21 @@ int	access_command(t_shell *shell, t_command *cmd, char **path)
 	}
 	free_env_array(tab_env);
 	return (1);
+}
+
+int	access_command(t_shell *shell, t_command *cmd, char **path)
+{
+	char	**tab_env;
+
+	tab_env = convert_env_list(shell);
+	if (tab_env == NULL)
+		return (1);
+	if (cmd->args[0][0] == '/' || ft_strncmp(cmd->args[0], "./", 2) == 0
+		|| ft_strncmp(cmd->args[0], "../", 3) == 0)
+	{
+		return (exec_relative_path(cmd, tab_env));
+	}
+	return (exec_path_env(cmd, path, tab_env));
 }
 
 void	process_cmd(t_shell *shell, t_command *cmd, char **path)
@@ -115,18 +123,4 @@ void	process_cmd(t_shell *shell, t_command *cmd, char **path)
 		waitpid(pid, &status, 0);
 		handle_child_exit_status(shell, status);
 	}
-}
-
-void	execute_external_command(t_shell *shell, t_command *cmd)
-{
-	char	**path;
-
-	path = find_path(shell);
-	if (path == NULL || cmd->args[0] == NULL)
-	{
-		free_array(path);
-		return ;
-	}
-	process_cmd(shell, cmd, path);
-	free_array(path);
 }

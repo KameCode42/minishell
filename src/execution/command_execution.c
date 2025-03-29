@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 20:11:15 by david             #+#    #+#             */
-/*   Updated: 2025/03/28 10:23:23 by david            ###   ########.fr       */
+/*   Updated: 2025/03/29 19:38:50 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,20 @@ void	execute_builtin_with_redir(t_command *cmd, t_shell *shell)
 		perror("dup2 restore stdin");
 	close(saved_stdout);
 	close(saved_stdin);
+}
+
+void	execute_external_command(t_shell *shell, t_command *cmd)
+{
+	char	**path;
+
+	path = find_path(shell);
+	if (path == NULL || cmd->args[0] == NULL)
+	{
+		free_array(path);
+		return ;
+	}
+	process_cmd(shell, cmd, path);
+	free_array(path);
 }
 
 void	execute_commands(t_shell *shell)

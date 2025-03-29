@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 15:01:06 by aledos-           #+#    #+#             */
-/*   Updated: 2025/03/28 12:56:05 by david            ###   ########.fr       */
+/*   Updated: 2025/03/29 19:49:46 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,6 +197,8 @@ int					is_builtins(t_command *cmd);
 void				execute_builtins(t_command *cmd, t_shell *shell);
 void				execute_commands(t_shell *shell);
 char				**find_path(t_shell *shell);
+int					exec_relative_path(t_command *cmd, char **tab_env);
+int					exec_path_env(t_command *cmd, char **path, char **tab_env);
 int					access_command(t_shell *shell, t_command *cmd, char **path);
 void				process_cmd(t_shell *shell, t_command *cmd, char **path);
 void				execute_external_command(t_shell *shell, t_command *cmd);

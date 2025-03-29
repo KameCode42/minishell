@@ -40,6 +40,7 @@ SRCS = src/main/minishell.c \
 		src/pipe/execute_pipe.c \
 		src/execution/command_execution.c \
 		src/execution/external_command.c \
+		src/execution/error_command.c \
 		src/signals/signal.c \
 		src/tools/free.c \
 		src/tools/free_utils.c \

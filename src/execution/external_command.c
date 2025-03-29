@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 08:49:58 by david             #+#    #+#             */
-/*   Updated: 2025/03/29 19:54:47 by david            ###   ########.fr       */
+/*   Updated: 2025/03/29 20:00:50 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	exec_relative_path(t_command *cmd, char **tab_env)
 	if (access(cmd->args[0], F_OK | X_OK) == 0)
 	{
 		execve(cmd->args[0], cmd->args, tab_env);
-		fre_env_array(tab_env);
+		free_env_array(tab_env);
 		return (1);
 	}
 	free_env_array(tab_env);

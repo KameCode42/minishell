@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 13:09:27 by david             #+#    #+#             */
-/*   Updated: 2025/03/21 15:26:06 by david            ###   ########.fr       */
+/*   Updated: 2025/03/30 12:00:38 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@
 // =============================================================================
 //
 // cwd represente le repertoire
-// PATH_MAX = taille max du repertoire
+// PATH_MAX = longueur maximale du chemin d'un fichier
+// si lechemin absolu comme /home/user/documents/mon_fichier.txt
+// ce chemin doit tenir dans PATH_MAX
 // si le repertoire existe on le print
 // sinon perror
 //

@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 11:03:36 by aledos-           #+#    #+#             */
-/*   Updated: 2025/03/21 15:25:35 by david            ###   ########.fr       */
+/*   Updated: 2025/03/30 14:34:16 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static int	check_cd_errors(t_shell *shell, t_command *cmd, char **old_pwd)
 		shell->exit_status = 1;
 		return (1);
 	}
-	if (cmd->args[2])
+	if (cmd->args[1] && cmd->args[2])
 	{
 		ft_putstr_fd("minishell: cd: too many arguments\n", 2);
 		free(*old_pwd);
@@ -74,8 +74,6 @@ void	execute_cd(t_shell *shell, t_command *cmd)
 	{
 		if (path != NULL)
 			handle_cd_error(shell, path, old_pwd);
-		else
-			free(old_pwd);
 		return ;
 	}
 	handle_cd_success(shell, path, old_pwd);

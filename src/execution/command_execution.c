@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 20:11:15 by david             #+#    #+#             */
-/*   Updated: 2025/03/29 19:38:50 by david            ###   ########.fr       */
+/*   Updated: 2025/03/30 09:53:20 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void	execute_external_command(t_shell *shell, t_command *cmd)
 	path = find_path(shell);
 	if (path == NULL || cmd->args[0] == NULL)
 	{
+		print_cmd_not_found(cmd);
 		free_array(path);
 		return ;
 	}

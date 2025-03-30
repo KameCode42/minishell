@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 17:10:36 by dle-fur           #+#    #+#             */
-/*   Updated: 2025/03/28 15:12:27 by david            ###   ########.fr       */
+/*   Updated: 2025/03/30 11:43:52 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	execute_pipe(t_shell *shell)
 	cmd = shell->cmds;
 	path = find_path(shell);
 	if (path == NULL)
-		exit(1);
+		print_cmd_not_found(cmd);
 	while (cmd != NULL)
 	{
 		if (cmd->next && create_pipe(pipe_fd) == -1)

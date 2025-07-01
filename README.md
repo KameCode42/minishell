@@ -56,7 +56,7 @@ Builtins :
 Pipelines & redirections :
 - Chaque segment entre `|` s’exécute dans sa propre suite de forks, reliés par des pipe().
 - < infile : redirige stdin depuis un fichier
-- > outfile / >> outfile : redirige stdout vers un fichier (écrasement ou ajout)
+- '>' outfile / >> outfile : redirige stdout vers un fichier (écrasement ou ajout)
 
 Environnement :
 - Gestion et modification de l’array envp pour export/unset.

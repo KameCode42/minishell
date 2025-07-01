@@ -42,7 +42,7 @@ readline & history :
 - Utilisation de la bibliothèque readline pour offrir l’édition de ligne et l’historique.
 
 Parsing :
-- Séparation des mots en tenant compte des quotes ("…", '…') et des échappements (\).
+- Séparation des mots en tenant compte des quotes ("…", '…') et des échappements ('\').
 
 Heredoc (<<) :
 Le token << DELIM déclenche la lecture interactive : <br>

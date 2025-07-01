@@ -44,7 +44,7 @@ readline & history :
 Parsing :
 - Séparation des mots en tenant compte des quotes ("…", '…') et des échappements.
 
-Heredoc (<<) :
+Heredoc (<<) : <br>
 Le token << DELIM déclenche la lecture interactive : <br>
 - Le shell lit l’entrée standard jusqu’à trouver DELIM.
 - Les lignes lues sont stockées dans un pipe ou fichier temporaire.

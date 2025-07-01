@@ -24,8 +24,8 @@ Heredoc :
 - Écrit chaque ligne lue dans le pipe/fichier.
 - Lors de l’exécution de la commande, redirige stdin depuis ce pipe/fichier.
 
-Exécution :
-Builtins (cd, echo, exit…) sont gérés en interne (pas de fork).
+Exécution : <br>
+Builtins (cd, echo, exit…) sont gérés en interne (pas de fork). <br>
 Autres commandes :
 - Création de processus (fork())
 - Mise en place des redirections (dup2() sur <, >, >>)

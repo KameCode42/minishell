@@ -9,7 +9,7 @@ L’objectif est de recréer les fonctionnalités de base d’un shell (bash/zsh
 - Gestion des pipelines
 - Gestion des redirections
 
-# Fonctionnement
+# Fonctionnement :
 Boucle de lecture :
 - Affiche un prompt (ex : minishell$ ).
 - Lit la ligne de commande saisie (readline()).

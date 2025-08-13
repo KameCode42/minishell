@@ -28,13 +28,6 @@ Heredoc :
 Exécution :
 - Builtins cd, echo, pwd, export, unset, env, exit gérés directement, sans fork. <br>
 
-Autres commandes :
-- Création de processus (fork())
-- Mise en place des redirections (dup2() sur <, >, >>)
-- Enchaînement des pipes (pipe()) pour les pipelines
-- Appel à execve()
-- Le shell attend la terminaison des processus avant de revenir au prompt.
-
 Pipelines & redirections :
 - Chaque segment entre `|` s’exécute dans sa propre suite de forks, reliés par des pipe().
 - < infile : redirige stdin depuis un fichier
@@ -47,3 +40,8 @@ Gestion des signaux :
 - Interception de SIGINT (Ctrl-C) et SIGQUIT pour éviter de quitter le shell lui-même.
 - SIGINT (Ctrl-C) : interrompt la commande courante sans quitter le shell
 - SIGQUIT (Ctrl-) : ignoré pour ne pas générer de core dump
+
+Autres commandes :
+- Création de processus (fork())
+- Appel à execve()
+- Le shell attend la terminaison des processus avant de revenir au prompt.

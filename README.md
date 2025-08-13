@@ -13,6 +13,7 @@ L’objectif est de recréer les fonctionnalités de base d’un shell (bash/zsh
 Boucle de lecture :
 - Affiche un prompt (ex : minishell$ ).
 - Lit la ligne de commande saisie (readline()).
+- Utilisation de la bibliothèque readline pour offrir l’édition de ligne et l’historique. (readline & history)
 
 Parsing :
 - Découpe la ligne en tokens (commandes, arguments, opérateurs |, <, >, >>, etc.).
@@ -25,7 +26,7 @@ Heredoc :
 - Lors de l’exécution de la commande, redirige stdin depuis ce pipe/fichier.
 
 Exécution :
-- Builtins (cd, echo, exit…) sont gérés en interne (pas de fork). <br>
+- Builtins cd, echo, pwd, export, unset, env, exit gérés directement, sans fork. <br>
 
 Autres commandes :
 - Création de processus (fork())
@@ -33,25 +34,6 @@ Autres commandes :
 - Enchaînement des pipes (pipe()) pour les pipelines
 - Appel à execve()
 - Le shell attend la terminaison des processus avant de revenir au prompt.
-
-Gestion des signaux :
-- Interception de SIGINT (Ctrl-C) et SIGQUIT pour éviter de quitter le shell lui-même.
-
-# Explications :
-readline & history :
-- Utilisation de la bibliothèque readline pour offrir l’édition de ligne et l’historique.
-
-Parsing :
-- Séparation des mots en tenant compte des quotes ("…", '…') et des échappements.
-
-Heredoc (<<) : <br>
-Le token << DELIM déclenche la lecture interactive : <br>
-- Le shell lit l’entrée standard jusqu’à trouver DELIM.
-- Les lignes lues sont stockées dans un pipe ou fichier temporaire.
-- Avant execve(), dup2() redirige stdin vers ce flux pour la commande.
-
-Builtins :
-- cd, echo, pwd, export, unset, env, exit gérés directement, sans fork.
 
 Pipelines & redirections :
 - Chaque segment entre `|` s’exécute dans sa propre suite de forks, reliés par des pipe().
@@ -61,6 +43,7 @@ Pipelines & redirections :
 Environnement :
 - Gestion et modification de l’array envp pour export/unset.
 
-Signaux :
+Gestion des signaux :
+- Interception de SIGINT (Ctrl-C) et SIGQUIT pour éviter de quitter le shell lui-même.
 - SIGINT (Ctrl-C) : interrompt la commande courante sans quitter le shell
 - SIGQUIT (Ctrl-) : ignoré pour ne pas générer de core dump

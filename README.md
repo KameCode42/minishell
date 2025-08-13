@@ -1,4 +1,4 @@
-![minishell](https://github.com/user-attachments/assets/79c94fc7-488e-40d7-8b1c-e330a12a1355)
+
 
 # Sujet :
 minishell est un projet qui consiste à développer un mini-interpréteur de commandes Unix. <br>
